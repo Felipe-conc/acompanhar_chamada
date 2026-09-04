@@ -4,7 +4,10 @@ import { Megaphone, Ticket, ClockFading } from 'lucide-react';
 import { useLocation, Link } from "react-router-dom";
 import { informacaoSenha, ultimasSenhasChamadas } from '../services/senhaService';
 import { TicketContext } from "../context/TicketContext";
+import Carousel from "../components/Carousel";
 import { useContext } from "react";
+import rice from "../assets/rice.webp"
+
 
 function Tickets() {    
     const [isSenhaChamada, setIsSenhaChamada] = useState(false);
@@ -26,11 +29,10 @@ function Tickets() {
     useEffect(() => {
         async function buscarSenhas() {
             if (sigla_senha !== "•••") {
-                const sigla = sigla_senha.split("-")
+                const sigla = sigla_senha.split("-");
                 const senhas = await ultimasSenhasChamadas(sigla[0]);
                 setUltimasSenhas(senhas);
             }
-            console.log("oi");            
         }
         
         buscarSenhas();
@@ -65,7 +67,7 @@ function Tickets() {
                 );
                 const response = await informacaoSenha(sigla_senha);
 
-                const sigla = sigla_senha.split("-")
+                const sigla = sigla_senha.split("-");
                 const senhas = await ultimasSenhasChamadas(sigla[0]);
                 setUltimasSenhas(senhas);
 
@@ -151,9 +153,41 @@ function Tickets() {
 
                 </div>
             </div>            
-            <div className="mt-5 bottom-0 flex justify-center gap-2">
+            {/* <div className="mt-1 bottom-0 flex justify-center gap-2">
                 <IconShieldCheck size={18} className="text-blue-600"/>
                 <small>Atualizado em tempo real</small>                
+            </div> */}
+            <div className="flex flex-col p-4 border border-gray-300 rounded-xl text-black shadow-sm">
+                <h1 className="font-bold text-xl">Ofertas para você</h1>
+                <p className="text-sm text-gray-500">Aproveite descontos especiais</p>
+                <div className="flex flex-row gap-3 justify-around w-full mt-3">
+                    <Carousel />
+                    {/* <div className="flex flex-col flex-1 h-55 border border-gray-300 rounded-md">
+                        <div className="absolute p-1 m-1 text-sm text-white font-bold bg-red-600 rounded-xl">
+                            -15%
+                        </div>
+                        <div className="flex-1 bg-gray-200 border border-gray-200 rounded-t-md overflow-hidden">
+                            <img src={rice} alt="Sem senha" className="w-full h-full object-contain" />
+                        </div>
+                        <div className="p-2">
+                            <h2 className="text-md text-red-600 font-bold">R$ 23,50 <span className="text-gray-500 font-light text-xs line-through">R$ 27,50</span></h2>
+                            <h3 className="text-xs">Arroz São João 5kg</h3>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col flex-1 h-55 border border-gray-300 rounded-md">
+                        <div className="absolute p-1 m-1 text-sm text-white font-bold bg-red-600 rounded-xl">
+                            -15%
+                        </div>
+                        <div className="flex-1 bg-gray-200 border border-gray-200 rounded-t-md overflow-hidden">
+                            <img src={rice} alt="Sem senha" className="w-full h-full object-contain" />
+                        </div>
+                        <div className="p-2">
+                            <h2 className="text-md text-red-600 font-bold">R$ 23,50 <span className="text-gray-500 font-light text-xs line-through">R$ 27,50</span></h2>
+                            <h3 className="text-xs">Arroz São João 5kg</h3>
+                        </div>
+                    </div> */}
+                </div>
             </div>
         </div>
     );

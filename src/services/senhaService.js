@@ -41,5 +41,5 @@ export async function ultimasSenhasChamadas(sigla) {
         new Date(b.data_chamado) - new Date(a.data_chamado)
     );  
 
-    return senhasOrdenadas.slice(0, 4);
+    return senhasOrdenadas.slice(0, 3);
 }
