@@ -8,7 +8,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-   server: {
-        host: true,
+  server: {
+    host: true,
+    allowedHosts: ['www.lucedata.com.br', 'lucedata.com.br'],
+    proxy: {
+      '/api': {
+        target: 'http://192.168.1.56:8082',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
 })

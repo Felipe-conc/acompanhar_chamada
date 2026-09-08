@@ -89,18 +89,6 @@ function Carousel() {
             </div>
             
         </div>
-        // <div className="flex flex-col flex-1 h-55 border border-gray-300 rounded-md">
-        //     <div className="absolute p-1 m-1 text-sm text-white font-bold bg-red-600 rounded-xl">
-        //         -15%
-        //     </div>
-        //     <div className="flex-1 bg-gray-200 border border-gray-200 rounded-t-md overflow-hidden">
-        //         <img src={rice} alt="Sem senha" className="w-full h-full object-contain" />
-        //     </div>
-        //     <div className="p-2">
-        //         <h2 className="text-md text-red-600 font-bold">R$ 23,50 <span className="text-gray-500 font-light text-xs line-through">R$ 27,50</span></h2>
-        //         <h3 className="text-xs">Arroz São João 5kg</h3>
-        //     </div>
-        // </div>
     );
 }
 

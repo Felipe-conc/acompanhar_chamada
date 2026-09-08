@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { IconShieldCheck } from '@tabler/icons-react';
 import { Megaphone, Ticket, ClockFading } from 'lucide-react';
 import { useLocation, Link } from "react-router-dom";
 import { informacaoSenha, ultimasSenhasChamadas } from '../services/senhaService';
@@ -58,23 +57,52 @@ function Tickets() {
         setPossuiSenha(Boolean(location.state?.[0] || ticket));
     }, [location.state]);
 
+    // useEffect(() => {
+    //     if (possuiSenha && !isSenhaChamada) {
+    //         const timer = setInterval(async () => {
+    //             console.log(
+    //                 "Timer executado:",
+    //                 new Date().toLocaleTimeString()
+    //             );
+    //             const response = await informacaoSenha(sigla_senha);
+
+    //             const sigla = sigla_senha.split("-");
+    //             const senhas = await ultimasSenhasChamadas(sigla[0]);
+    //             setUltimasSenhas(senhas);
+
+    //             if (response[0]?.data_chamado) {
+    //                 setIsSenhaChamada(!isSenhaChamada);
+    //             }
+    //         }, 2000);
+
+    //         return () => clearInterval(timer);
+    //     }
+    // }, [possuiSenha, isSenhaChamada, array_senha]);
+
     useEffect(() => {
         if (possuiSenha && !isSenhaChamada) {
-            const timer = setInterval(async () => {
+
+            const verificarSenha = async () => {
                 console.log(
-                    "Timer executado:",
+                    "Verificação executada:",
                     new Date().toLocaleTimeString()
                 );
+
                 const response = await informacaoSenha(sigla_senha);
 
                 const sigla = sigla_senha.split("-");
                 const senhas = await ultimasSenhasChamadas(sigla[0]);
+
                 setUltimasSenhas(senhas);
 
                 if (response[0]?.data_chamado) {
-                    setIsSenhaChamada(!isSenhaChamada);
+                    setIsSenhaChamada(true);
                 }
-            }, 2000);
+            };
+            
+            verificarSenha();
+
+            const timer = setInterval(verificarSenha, 2000);
 
             return () => clearInterval(timer);
         }

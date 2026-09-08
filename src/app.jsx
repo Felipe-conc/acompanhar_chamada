@@ -4,6 +4,7 @@ import Tickets from "./pages/Tickets";
 import TakeTicket from "./pages/TakeTicket";
 import ConfirmTicket from "./pages/ConfirmTicket";
 import TicketHistory from "./pages/TicketHistory";
+import NoConnection from "./pages/NoConnection";
 
 function App() {
     return (
@@ -16,7 +17,7 @@ function App() {
                     <Route path="/senhas" element={<Tickets />} />
                     <Route path="/confirmar-senha" element={<ConfirmTicket />} />
                     <Route path="/historico-senhas" element={<TicketHistory />} />
-                    <Route path="*" element={<h1>Not found</h1>} />
+                    <Route path="*" element={<NoConnection/>} />
                 </Routes>
             </main>
         </div>
